@@ -6,8 +6,11 @@ const getIdFromToken = require("../utils/getIdFromToken");
 router.get("/", async (req, res) => {
   try {
     const userId = getIdFromToken(req);
+
     // Make an HTTP GET request to fetch profile data from another server
-    const response = await fetch(`http://localhost:3001/profile/${userId}`);
+    const response = await fetch(
+      `http://user-app_crud_app_1:3001/profile/${userId}`
+    );
     const profileData = await response.json();
 
     // Check if profile exists
@@ -33,11 +36,14 @@ router.post("/", async (req, res) => {
     const postData = req.body;
 
     // Make an HTTP POST request to create a new profile
-    const response = await fetch(`http://localhost:3001/profile/${userId}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(postData),
-    });
+    const response = await fetch(
+      `http://user-app_crud_app_1:3001/profile/${userId}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(postData),
+      }
+    );
     const responseData = await response.json();
 
     // Return the response data in the response
@@ -58,23 +64,24 @@ router.put("/", async (req, res) => {
     const updatedData = req.body;
 
     // Make an HTTP PUT request to update the profile
-    const response = await fetch(`http://localhost:3001/profile/${userId}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedData),
-    });
+    const response = await fetch(
+      `http://user-app_crud_app_1:3001/profile/${userId}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedData),
+      }
+    );
     const responseData = await response.json();
 
     // Return the response data in the response
     res.json(responseData);
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({
-        message:
-          "Le serveur a rencontré un problème lors de la mise à jour du profil.",
-      });
+    res.status(500).json({
+      message:
+        "Le serveur a rencontré un problème lors de la mise à jour du profil.",
+    });
   }
 });
 
@@ -84,21 +91,22 @@ router.delete("/", async (req, res) => {
     const userId = getIdFromToken(req);
 
     // Make an HTTP DELETE request to delete the profile
-    const response = await fetch(`http://localhost:3001/profile/${userId}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `http://user-app_crud_app_1:3001/profile/${userId}`,
+      {
+        method: "DELETE",
+      }
+    );
     const responseData = await response.json();
 
     // Return the response data in the response
     res.json(responseData);
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({
-        message:
-          "Le serveur a rencontré un problème lors de la suppression du profil.",
-      });
+    res.status(500).json({
+      message:
+        "Le serveur a rencontré un problème lors de la suppression du profil.",
+    });
   }
 });
 

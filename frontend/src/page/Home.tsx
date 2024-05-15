@@ -18,9 +18,12 @@ export function Home() {
 
     const fetchUserData = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/profile", {
+            const response = await fetch(
+              "http://user-app_auth_app_1:3002/api/profile",
+              {
                 credentials: "include",
-            });
+              }
+            );
             console.log(response)
             if (!response.ok) {
                 throw new Error("Failed to fetch user data");
