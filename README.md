@@ -2,7 +2,7 @@
 
 C'est une application qui permet de manager le profil d'un utilisateur.
 
-https://github.com/Pvpasall/UserManage_MS/assets/67522046/0aa529ab-f57a-4a52-aa93-8b799dbd8c35
+https://github.com/mathias-crochet/soft_cloud-tp_final
 
 ## Fonctionnalités
 
