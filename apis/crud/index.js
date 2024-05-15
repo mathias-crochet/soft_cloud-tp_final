@@ -1,18 +1,36 @@
 require("./database/connexion");
 const mongoose = require("mongoose");
 const Profile = require("./model/schema");
+const cors = require('cors');
 
 const express = require("express");
 
 const app = express();
 app.use(express.json());
 
+app.use(
+  cors({
+      origin: [
+          "http://localhost:3000",
+      ],
+      credentials: true,
+  })
+);
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  next();
+});
+
 app.get("/profile/:userId", async (req, res) => {
   try {
     const userId = req.params.userId;
 
-    const mongoUserId = new mongoose.Types.ObjectId(userId);
+    console.log(userId);
 
+    const mongoUserId = new mongoose.Types.ObjectId(userId);
     const profile = await Profile.findOne({ userId: mongoUserId }).exec();
 
     if (!profile) {
