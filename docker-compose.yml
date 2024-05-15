@@ -3,20 +3,36 @@ version: '3.8'
 services:
   apache:
     build:
-      context: ./apis/passerelle  # Path to the Dockerfile for Apache
+      context: ./apis/passerelle 
     ports:
-      - "800:800"  # Expose port 80 for Apache
+      - "800:800" 
     depends_on:
       - crud_app
-      # - node_app
+      - auth_app
     networks:
       - my_network
 
   crud_app:
     build:
-      context: ./apis/crud  # Path to the Dockerfile for CRUD app
+      context: ./apis/crud  
     ports:
-      - "3001:3001"  # Expose port 3000 for the CRUD app
+      - "3001:3001"  
+    networks:
+      - my_network
+
+  auth_app:
+    build:
+      context: ./apis/auths  
+    ports:
+      - "3002:3002"  
+    networks:
+      - my_network
+
+  react_app:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
     networks:
       - my_network
 
