@@ -59,13 +59,13 @@ require("./middlewares/auth");
 app.use("/api/auth", authRoutes);
 
 // getway routes
-const passport = require("passport")
+const passport = require("passport");
 
- app.use(
-   "/api/profile",
-   passport.authenticate("jwt", { session: false }),
-   profileRoutes
- );
+app.use(
+  "/api/profile",
+  passport.authenticate("jwt", { session: false }),
+  profileRoutes
+);
 // app.use(
 //   "/api/sections",
 //   passport.authenticate("jwt", { session: false }),
@@ -82,12 +82,12 @@ const passport = require("passport")
 //   taskRoutes
 // );
 
-const PORT = process.env.SERVER_PORT || 5000;
+const PORT = process.env.SERVER_PORT || 3002;
 
 app.use((req, res, next) => {
   res.status(404).json({ message: "Not found" });
 });
 
-httpServer.listen(5000, () => {
+httpServer.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
