@@ -4,6 +4,7 @@
   "description": "Authentication API",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
@@ -30,6 +31,10 @@
     "nodemon": "^3.1.0",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "supertest": "^7.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
