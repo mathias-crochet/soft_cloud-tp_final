@@ -17,33 +17,36 @@ export function Register() {
                 return;
             }
             console.log(email, password);
-            const response = await fetch("http://localhost:5000/api/auth/register", {
+            const response = await fetch(
+              "http://localhost:800/api/auth/register",
+              {
                 method: "POST",
                 credentials: "include",
                 headers: {
-                    "Content-Type": "application/json",
+                  "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    email: email,
-                    password: password,
+                  email: email,
+                  password: password,
                 }),
-            });
+              }
+            );
 
             if (!response.ok) {
-                setError('Erreur lors de l\'inscription');
-                return;
+              setError("Erreur lors de l'inscription");
+              return;
             }
-            const profileRes = await fetch("http://localhost:5000/api/profile", {
-                method: "POST",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: "",
-                    firstname: "",
-                    age: 0,
-                }),
+            const profileRes = await fetch("http://localhost:800/api/profile", {
+              method: "POST",
+              credentials: "include",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name: "",
+                firstname: "",
+                age: 0,
+              }),
             });
             if (!profileRes.ok) {
                 throw new Error("Failed to create profile");

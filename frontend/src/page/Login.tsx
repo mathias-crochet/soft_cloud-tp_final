@@ -30,17 +30,20 @@ export function Login() {
                 return;
             }
 
-            const response = await fetch("http://localhost:5000/api/auth/login", {
+            const response = await fetch(
+              "http://localhost:800/api/auth/login",
+              {
                 method: "POST",
                 credentials: "include",
                 headers: {
-                    "Content-Type": "application/json",
+                  "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    email: email,
-                    password: password,
+                  email: email,
+                  password: password,
                 }),
-            });
+              }
+            );
 
             if (!response.ok) {
                 setError('Email ou mot de passe invalide');
