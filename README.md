@@ -21,3 +21,6 @@ architechture microservice avec API Gateway pour authentifier les requétes et f
 - PassportJs
 - NodeJs
 - ExpressJs
+
+ ## Deploiement:
+ - server Apache
