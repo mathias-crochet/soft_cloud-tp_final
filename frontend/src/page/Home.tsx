@@ -19,7 +19,7 @@ export function Home() {
     const fetchUserData = async () => {
         try {
             const response = await fetch(
-              "http://user-app_auth_app_1:3002/api/profile",
+              "http://localhost:800/api/profile",
               {
                 credentials: "include",
               }
@@ -38,7 +38,7 @@ export function Home() {
 
     const handleLogout = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/auth/logout", {
+            const response = await fetch("http://localhost:800/api/auth/logout", {
                 method: "POST",
                 credentials: "include",
             });
@@ -55,7 +55,7 @@ export function Home() {
 
     const checkLoginStatus = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/auth/islogged", {
+            const response = await fetch("http://localhost:800/api/auth/islogged", {
                 credentials: "include",
             });
             const data = await response.json();

@@ -4,6 +4,7 @@ services:
   apache:
     build:
       context: ./apis/passerelle 
+    container_name: apache-app
     ports:
       - "800:800" 
     depends_on:
@@ -14,7 +15,8 @@ services:
 
   crud_app:
     build:
-      context: ./apis/crud  
+      context: ./apis/crud
+    container_name: crud-app  
     ports:
       - "3001:3001"  
     networks:
@@ -22,7 +24,8 @@ services:
 
   auth_app:
     build:
-      context: ./apis/auths  
+      context: ./apis/auths
+    container_name: auth-app  
     ports:
       - "3002:3002"  
     networks:
@@ -31,6 +34,7 @@ services:
   react_app:
     build:
       context: ./frontend
+    container_name: react-app
     ports:
       - "3000:3000"
     networks:
