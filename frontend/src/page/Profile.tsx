@@ -34,7 +34,7 @@ export function Profile() {
 
     const handleLogout = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/auth/logout", {
+            const response = await fetch("http://localhost:800/api/auth/logout", {
                 method: "POST",
                 credentials: "include",
             });
@@ -63,7 +63,7 @@ export function Profile() {
 
     const checkLoginStatus = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/auth/islogged", {
+            const response = await fetch("http://localhost:800/api/auth/islogged", {
                 credentials: "include",
             });
             const data = await response.json();
@@ -78,7 +78,7 @@ export function Profile() {
 
     const fetchProfile = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/profile", {
+            const response = await fetch("http://localhost:800/api/profile", {
                 credentials: "include",
             });
             console.log(response);
@@ -98,7 +98,7 @@ export function Profile() {
 
     const updateProfile = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/profile", {
+            const response = await fetch("http://localhost:800/api/profile", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

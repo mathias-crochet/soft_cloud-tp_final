@@ -12,7 +12,7 @@ const userModel = mongoose.model("User");
 
 const getIdFromToken = require("../utils/getIdFromToken");
 
-const url = "http://localhost:5000/api/auth";
+const url = "http://localhost:800/api/auth";
 
 describe("getIdFromToken", () => {
   it("GetIdFromToken function", () => {

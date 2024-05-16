@@ -1,35 +1,36 @@
 require("./database/connexion");
 const mongoose = require("mongoose");
 const Profile = require("./model/schema");
-const cors = require('cors');
+const cors = require("cors");
 
 const express = require("express");
-
+const getIdFromToken = require("./getIdFromToken");
 const app = express();
 app.use(express.json());
 
 app.use(
   cors({
-      origin: [
-          "http://localhost:3000",
-      ],
-      credentials: true,
+    origin: ["http://localhost:3000"],
+    credentials: true,
   })
 );
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Credentials", true);
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+  );
   next();
 });
 
 app.get("/profile/:userId", async (req, res) => {
   try {
     const userId = req.params.userId;
-
-    console.log(userId);
-
     const mongoUserId = new mongoose.Types.ObjectId(userId);
     const profile = await Profile.findOne({ userId: mongoUserId }).exec();
 
@@ -39,12 +40,9 @@ app.get("/profile/:userId", async (req, res) => {
     res.status(200).json(profile);
   } catch (error) {
     console.error("Erreur lors de la récupération de l'utilisateur:", error);
-    res
-      .status(500)
-      .json({
-        error:
-          "Une erreur est survenue lors de la récupération de l'utilisateur",
-      });
+    res.status(500).json({
+      error: "Une erreur est survenue lors de la récupération de l'utilisateur",
+    });
   }
 });
 
@@ -99,12 +97,9 @@ app.put("/profile/:userId", async (req, res) => {
     res.status(200).json(updatedProfile);
   } catch (error) {
     console.error("Erreur lors de la mise à jour de l'utilisateur:", error);
-    res
-      .status(500)
-      .json({
-        error:
-          "Une erreur est survenue lors de la mise à jour de l'utilisateur",
-      });
+    res.status(500).json({
+      error: "Une erreur est survenue lors de la mise à jour de l'utilisateur",
+    });
   }
 });
 
@@ -123,12 +118,9 @@ app.delete("/profile/:userId", async (req, res) => {
     res.status(200).json({ message: "Utilisateur supprimé avec succès" });
   } catch (error) {
     console.error("Erreur lors de la suppression de l'utilisateur:", error);
-    res
-      .status(500)
-      .json({
-        error:
-          "Une erreur est survenue lors de la suppression de l'utilisateur",
-      });
+    res.status(500).json({
+      error: "Une erreur est survenue lors de la suppression de l'utilisateur",
+    });
   }
 });
 
